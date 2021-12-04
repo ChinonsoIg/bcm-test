@@ -1,6 +1,5 @@
 .wrapper {
   display: grid;
-  /* gap: 10px; */
   grid-template-columns: auto auto auto;
   border: 2px solid rgb(220, 220, 220);
 }
@@ -8,7 +7,6 @@
   min-height: 50px;
   padding: 10px;
   border: 2px solid rgb(220, 220, 220);
-  /* background-color: rgba(242, 242, 242, 0.2); */
   background-color: rgba(220, 220, 220, 0.1);
 }
 
