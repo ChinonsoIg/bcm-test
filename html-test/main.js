@@ -7,8 +7,10 @@ const addParagraphs = () => {
   
   Array.prototype.forEach.call(paragraphs, (el) => {
     let node = document.createElement("P");
+    let hr = document.createElement("HR");
     node.innerHTML = el.innerHTML;
 
+    body.insertBefore(hr, btn);
     body.insertBefore(node, btn);
 
     return body;
