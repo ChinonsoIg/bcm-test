@@ -1,33 +1,48 @@
 const body = document.querySelector("#body");
 const paragraphs = document.getElementsByClassName("paragraph");
-const btn = document.querySelector("#btn");
-const img = document.getElementsByClassName("img");
+const btnHitMe = document.querySelector("#btn");
 
 const btnToggle = document.createElement("BUTTON");
 const btnToggleText = document.createTextNode("Hide Image");
 btnToggle.appendChild(btnToggleText);
-body.appendChild(btnToggle)
+body.appendChild(btnToggle);
 
-btnToggle.addEventListener("click", (e) => {
-  const im = document.getElementsByTagName("img");
+
+(function () {
+  Array.prototype.forEach.call(paragraphs, (el) => {
+      
+    const hr = document.createElement("HR");
+
+    if (el.previousElementSibling.nodeName === "P") {
+      body.insertBefore(hr, el);
+    }
   
-  for (let i = 0; i <= im.length; i++) {
-    const element = im[i];
+  });
+})();
+
+
+btnToggle.addEventListener("click", () => {
+  const img = document.getElementsByTagName("img");
+  
+  for (let i = 0; i <= img.length; i++) {
+    const element = img[i];
     
     if (element === undefined) {
       return;
     }
 
-    const parent = element.parentNode
+    const parent = element.parentNode;
 
     if (parent.style.display === "none") {
       parent.style.display = "block";
       parent.previousElementSibling.style.display = "block";
       btnToggle.textContent = "Hide Image";
+
     } else {
       parent.style.display = "none";
       parent.previousElementSibling.style.display = "none";
       btnToggle.textContent = "Show Image";
+
     }
 
   }
@@ -36,59 +51,27 @@ btnToggle.addEventListener("click", (e) => {
 
 const addParagraphs = () => {
   
-  Array.prototype.forEach.call(paragraphs, (el) => {
+  const arr = Array.prototype.forEach.call(paragraphs, (el) => {
     
     const node = document.createElement("P");
     const hr = document.createElement("HR");
     node.innerHTML = el.innerHTML;
 
-    body.insertBefore(hr, btn);
-    body.insertBefore(node, btn);
+    body.insertBefore(hr, btnHitMe);
+    body.insertBefore(node, btnHitMe);
 
-  })
+  });
+
+  console.log(arr)
+  return arr;
 
 }
 
+// console.log(addParagraphs)
 
-
-
-
-
-// Note
-// const addParagraphs = () => {
-  
-//   Array.prototype.forEach.call(paragraphs, (el) => {
-    
-//     // For btn
-//     if (el.contains(img)) {
-//       const node = document.createElement("P");
-//       const hr = document.createElement("HR");
-
-//       const btnNode = document.createElement("BUTTON");
-//       const btnTextNode = document.createTextNode("Toggle");
-//       btnNode.appendChild(btnTextNode);
-
-//       node.innerHTML = el.innerHTML;
-//       node.appendChild(btnNode)
-
-//       body.insertBefore(hr, btn);
-//       body.insertBefore(node, btn);
-
-//       btnNode.addEventListener("click", (e) => {
-//         console.log(btnNode.parentNode.parentNode);
-//         const pa = btnNode.parentNode;
-//         body.removeChild(pa)
-//       })
-
-//     } else {
-//       const node = document.createElement("P");
-//       const hr = document.createElement("HR");
-//       node.innerHTML = el.innerHTML;
-
-//       body.insertBefore(hr, btn);
-//       body.insertBefore(node, btn);
-//     }
-
-//   })
-
+// function move(from, to, arr) {
+//   const newArr = [...arr];
+//   const item = newArr.splice(from, 1)[0];
+//   newArr.splice(to, 0, item);
+//   return newArr;
 // }
