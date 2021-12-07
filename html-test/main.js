@@ -1,5 +1,5 @@
 const body = document.querySelector("#body");
-const paragraphs = document.getElementsByClassName("paragraph");
+const paragraphs = document.querySelectorAll(".paragraph");
 const btnHitMe = document.querySelector("#btn");
 
 const btnToggle = document.createElement("BUTTON");
@@ -47,11 +47,53 @@ btnToggle.addEventListener("click", () => {
 
   }
   
-})
+});
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+var arr = [2, '11', 37, 42, '50', '66'];
+
+const shuffleArrayll = (array) => {
+  return array.sort((a, b) => 0.5 - Math.random())
+} 
+
+// Used like so
+
+// console.log(shuffle(arr));
+console.log(shuffleArrayll(arr));
+
+
 
 const addParagraphs = () => {
   
-  const arr = Array.prototype.forEach.call(paragraphs, (el) => {
+  let randomizedParagraphs = shuffle(Array.prototype.slice.call(paragraphs));
+  console.log(randomizedParagraphs)
+  
+  Array.prototype.forEach.call(randomizedParagraphs, (el) => {
+
     
     const node = document.createElement("P");
     const hr = document.createElement("HR");
@@ -61,9 +103,6 @@ const addParagraphs = () => {
     body.insertBefore(node, btnHitMe);
 
   });
-
-  console.log(arr)
-  return arr;
 
 }
 
