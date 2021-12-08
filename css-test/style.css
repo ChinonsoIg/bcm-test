@@ -39,7 +39,7 @@
   grid-area: 3 / 3 / 4 / 4;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 576px) {
   .wrapper {
     display: grid;
     grid-template-columns: auto;
